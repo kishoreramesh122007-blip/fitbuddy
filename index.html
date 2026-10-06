@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FitBuddy | Generate Plan</title>
+
+    <!-- CSS LINK -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', path='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <main class="container">
+
+        <section class="hero">
+
+            <p class="eyebrow">
+                AI FITNESS PLANNER
+            </p>
+
+            <h1>
+                Your personalized 7-day fitness plan.
+            </h1>
+
+            <p class="subtitle">
+                Enter your information and FitBuddy
+                will generate a structured workout plan
+                and nutrition/recovery tip.
+            </p>
+
+        </section>
+
+
+        <form
+            action="/generate-workout"
+            method="post"
+            class="card form-grid"
+        >
+
+            <div class="field">
+
+                <label for="username">
+                    Name
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter your name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="user_id">
+                    User ID
+                </label>
+
+                <input
+                    type="text"
+                    id="user_id"
+                    name="user_id"
+                    placeholder="Example: FB001"
+                    required
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="age">
+                    Age
+                </label>
+
+                <input
+                    type="number"
+                    id="age"
+                    name="age"
+                    min="13"
+                    max="100"
+                    placeholder="Enter your age"
+                    required
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="weight">
+                    Weight (kg)
+                </label>
+
+                <input
+                    type="number"
+                    id="weight"
+                    name="weight"
+                    step="0.1"
+                    min="1"
+                    max="500"
+                    placeholder="Enter your weight"
+                    required
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="goal">
+                    Fitness Goal
+                </label>
+
+                <select
+                    id="goal"
+                    name="goal"
+                    required
+                >
+
+                    <option value="general wellness">
+                        General Wellness
+                    </option>
+
+                    <option value="weight loss">
+                        Weight Loss
+                    </option>
+
+                    <option value="muscle gain">
+                        Muscle Gain
+                    </option>
+
+                    <option value="flexibility">
+                        Flexibility
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="intensity">
+                    Workout Intensity
+                </label>
+
+                <select
+                    id="intensity"
+                    name="intensity"
+                    required
+                >
+
+                    <option value="low">
+                        Low
+                    </option>
+
+                    <option
+                        value="medium"
+                        selected
+                    >
+                        Medium
+                    </option>
+
+                    <option value="high">
+                        High
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="full">
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Generate 7-Day Plan
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
+
+</body>
+
+</html>

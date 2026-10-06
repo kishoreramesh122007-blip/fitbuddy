@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+FitBuddy | Admin
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<h1>
+    All Users
+</h1>
+
+
+<p class="subtitle">
+
+    View saved FitBuddy users and their plans.
+
+</p>
+
+
+{% if not records %}
+
+<section class="card">
+
+    <p>
+        No users found.
+    </p>
+
+</section>
+
+{% endif %}
+
+
+{% for item in records %}
+
+
+<section class="card">
+
+
+    <div class="user-header">
+
+        <div>
+
+            <h2>
+                {{ item.user.username }}
+            </h2>
+
+            <p>
+
+                ID:
+                {{ item.user.user_id }}
+
+                • Goal:
+                {{ item.user.goal|title }}
+
+                • Intensity:
+                {{ item.user.intensity|title }}
+
+            </p>
+
+        </div>
+
+
+        <form
+            action="/delete-user/{{ item.user.user_id }}"
+            method="post"
+        >
+
+            <button
+                type="submit"
+                class="delete"
+                onclick="return confirm('Delete this user?')"
+            >
+
+                Delete
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div class="profile-grid">
+
+
+        <div>
+
+            <small>
+                Age
+            </small>
+
+            <strong>
+                {{ item.user.age }}
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <small>
+                Weight
+            </small>
+
+            <strong>
+                {{ item.user.weight }} kg
+            </strong>
+
+        </div>
+
+
+    </div>
+
+
+    {% for plan in item.plans %}
+
+
+    <details>
+
+        <summary>
+
+            Plan #{{ plan.id }}
+
+        </summary>
+
+
+        <h3>
+            Original Plan
+        </h3>
+
+
+        <pre class="plan">
+{{ plan.original_plan }}
+        </pre>
+
+
+        {% if plan.updated_plan %}
+
+        <h3>
+            Updated Plan
+        </h3>
+
+
+        <pre class="plan">
+{{ plan.updated_plan }}
+        </pre>
+
+
+        <h3>
+            User Feedback
+        </h3>
+
+        <p>
+            {{ plan.feedback }}
+        </p>
+
+        {% endif %}
+
+
+        <h3>
+            Nutrition Tip
+        </h3>
+
+        <p>
+            {{ plan.nutrition_tip }}
+        </p>
+
+
+    </details>
+
+
+    {% endfor %}
+
+
+</section>
+
+
+{% endfor %}
+
+
+{% endblock %}
